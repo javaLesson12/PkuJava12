@@ -40,19 +40,20 @@ public class Leetcode151 {
 // --------------------------------------
         int pos=0;
         for(int i=0;i<s.length();++i){
-            if(s.charAt(i)==' ') {
-
+            if(s.charAt(i)==' ') {//遍历遇到空格，将字符串,添加到ans头部
                 if (!ans.equals("")) {
-                    ans = s.substring(pos, i) + " " + ans;
+                    ans = s.substring(pos, i) + " " + ans;//截取字符串，若非第一个，加空格
                 } else {
                     ans = s.substring(pos, i);
                 }
-                while (s.charAt(++i) == ' ' && i < s.length()) ;
+                while (s.charAt(++i) == ' ' && i < s.length()) ;//忽略空格后的多个空格
                 pos = i;
             }
+            if(i==s.length()-1){
+                ans=s.substring(pos,s.length())+" "+ans;//将最后一个加入
+            }
         }
-        ans=s.substring(pos,s.length())+" "+ans;
-        return ans;
+        return ans.trim();
     }
     public static void main(String[] args) throws Exception{
         System.out.println(new Leetcode151().reverseWords("b      a"));

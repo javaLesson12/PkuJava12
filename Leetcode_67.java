@@ -6,8 +6,8 @@ public class Leetcode_67 {
         String ans="";
         int ai=a.length()-1;
         int bi=b.length()-1;
-        int cin=0;
-        while (ai>=0&&bi>=0){
+        int cin=0;//cin表示进位
+        while (ai>=0&&bi>=0){//两串，按位加
             char ac=a.charAt(ai);
             char bc=a.charAt(bi);
             int temp=ac-'0'+bc-'0'+cin;
@@ -17,7 +17,7 @@ public class Leetcode_67 {
             --ai;
             --bi;
         }
-        while (ai>=0){
+        while (ai>=0){//a串未空
             char ac=a.charAt(ai);
             int temp=ac-'0'+cin;
             cin=temp/2;
@@ -25,7 +25,7 @@ public class Leetcode_67 {
             //System.out.println(ans);
             --ai;
         }
-        while (bi>=0){
+        while (bi>=0){//b串未空
             char bc=a.charAt(bi);
             int temp=bc-'0'+cin;
             cin=temp/2;
@@ -33,7 +33,7 @@ public class Leetcode_67 {
             //System.out.println(ans);
             --bi;
         }
-        if (cin!=0){
+        if (cin!=0){//进位不为0
             ans+=cin;
         }
         StringBuilder stringBuilder=new StringBuilder(ans);

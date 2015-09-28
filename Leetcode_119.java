@@ -1,4 +1,5 @@
 public class Solution {
+    //因为和118差不多，直接就用118了，只修改了返回
     public List<Integer> getRow(int rowIndex) {
         int numRows=rowIndex+1;
          List<List<Integer>> ans = new ArrayList<>();
