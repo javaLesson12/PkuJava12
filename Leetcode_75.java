@@ -1,22 +1,20 @@
-import java.util.Arrays;
-
-/**
- * Created by umic-lord on 2015/9/25.
- */
-public class Leetcode_75 {
-    
+public class Solution {
     public void sortColors(int[] nums) {
-        Arrays.sort(nums);//颜色0，1，2，直接排序。
-    }
+        int[] rgb = new int[3];
 
+        for (int num : nums) {
+            ++rgb[num];//存储颜色
+        }
+        int i = 0;
+        for (; i < rgb[0]; ++i) {
+            nums[i] = 0;
+        }
+        for (; i < rgb[1]+rgb[0]; ++i) {
+            nums[i] = 1;
+        }
 
-    public static void main(String[] args) throws Exception{
-        int[] nums =new int[]{0,1,2,0,1,0,2,0,1};
-
-        Leetcode_75 l_75=new Leetcode_75();
-        l_75.sortColors(nums);
-        for(int i:nums){
-            System.out.println(i);
+        for (; i < rgb[2]+rgb[1]+rgb[0]; ++i) {
+            nums[i] = 2;
         }
     }
 }
