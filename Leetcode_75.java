@@ -10,7 +10,6 @@ public class Leetcode_75 {
     }
 
 
-
     public static void main(String[] args) throws Exception{
         int[] nums =new int[]{0,1,2,0,1,0,2,0,1};
 

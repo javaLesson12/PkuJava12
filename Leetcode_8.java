@@ -1,4 +1,4 @@
-import java.math.BigInteger;
+﻿import java.math.BigInteger;
 
 /**
  * Created by umic-lord on 2015/9/24.
@@ -6,7 +6,6 @@ import java.math.BigInteger;
 public class Leetcode_8 {
 
     public static int my_string_to_int(String str) {
-        //这题提交很多次
         str = str.trim();
         if(str.length()==0)return 0;
         int i = 0;
