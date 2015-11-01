@@ -4,7 +4,6 @@ public class Solution {
         List<List<Integer>> ans=new ArrayList<List<Integer>>();
         if(nums.length<3) 
             return ans;
-        Set<List<Integer>> set=new HashSet<List<Integer>>();
         int i,j,k;
         for(i=0;i<nums.length-2;i++)
         {
