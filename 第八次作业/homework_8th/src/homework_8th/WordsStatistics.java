@@ -99,12 +99,13 @@ public class WordsStatistics {
     }
 
     public WordsStatistics uniqueWords() {
+        WordsStatistics wordsStatistics = new WordsStatistics();
         HashSet<String> tmpSet = new HashSet<>();
         tmpSet.addAll(this.getWords());
         List<String> uniqueStr = new ArrayList<>();
         uniqueStr.addAll(tmpSet);
-        this.setWords(uniqueStr);
-        return this;
+        wordsStatistics.setWords(uniqueStr);
+        return wordsStatistics;
     }
 
     public void printWords(String name) {
@@ -195,8 +196,8 @@ public class WordsStatistics {
         OutputStream outputStream = null;
         try {
             outputStream = new FileOutputStream(file);
-            prinAnsThreeToStream(words1, words2, outputStream, "第一个文件单词");
-            prinAnsThreeToStream(words2, words1, outputStream, "第二个文件单词");
+            prinAnsThreeToStream(words1, words2, outputStream, "第一个文件单词", "第一个文件单词特有");
+            prinAnsThreeToStream(words2, words1, outputStream, "第二个文件单词", "第二个文件单词特有");
             words1.mergeWords(words2).print(WordsStatistics.LIST, "合并不重复单词列表：", outputStream);
             words1.getRepeatedWords(words2).print(WordsStatistics.LIST, "重复单词列表：", outputStream);
             outputStream.flush();
@@ -206,9 +207,10 @@ public class WordsStatistics {
         }
     }
 
-    private void prinAnsThreeToStream(WordsStatistics words1, WordsStatistics words2, OutputStream outputStream, String str) throws Exception {
+    private void prinAnsThreeToStream(WordsStatistics words1, WordsStatistics words2, OutputStream outputStream, String str1,String str2) throws Exception {
+        words1.print(WordsStatistics.LEGNTH, str1,outputStream);//输出问题3 length(A)
         WordsStatistics words1Uq = words1.getWordsUnique(words2);
-        words1Uq.print(WordsStatistics.LEGNTH, str, outputStream);
+        words1Uq.print(WordsStatistics.LEGNTH, str1, outputStream);
         printPercent(words1, words1Uq, outputStream);
     }
 
