@@ -252,11 +252,6 @@ public class GobangGame {
         int[] ansXY = analysisBoard(posX, posY);
         int posX = ansXY[0];
         int posY = ansXY[1];
-        String[][] board = chessboard.getBoard();
-        while (board[posX][posY] != "十") {
-            posX = (int) (Math.random() * (Chessboard.BOARD_SIZE - 1));
-            posY = (int) (Math.random() * (Chessboard.BOARD_SIZE - 1));
-        }
         int[] result = {posX, posY};
         return result;
     }
