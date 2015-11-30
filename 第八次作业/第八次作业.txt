@@ -1,0 +1,100 @@
+/*
+ 	1. 读取两个不同的文本文件，输出两个文件总共的词汇表（即所
+      	   有不重复的单词）
+ 	2. 进一步计算同时出现在两个文件中的交集单词词汇表。
+ 	3. 统计上述两个文件词汇表中各自包含单词总数。
+*/
+
+
+import java.util.*;
+import java.util.regex.*;
+import java.io.*;
+public class Mysolution{
+ 
+public static void main(String args[]) throws IOException
+{
+  File f1=new File("test1.txt");
+  File f2=new File("test2.txt");
+
+  HashSet<Object> wordSet1=getWorldSet(f1);
+  HashSet<Object> wordSet2=getWorldSet(f2);
+  HashSet<Object> wordSet11=new HashSet(wordSet1);
+  
+  HashSet<Object>wordSet1Com=wordSet1.addAll(wordSet2);//两集合的并集
+  HashSet<Object>wordSet1Dec=wordSet11.removeAll(wordSet2);//两集合的差集
+  int num1=worldSet1Com.size();
+  int num2=worldSet1Dec.size();
+
+  BufferedWriter bufw1=new BufferedWriter(new FileWriter("Word1.txt"));
+  for(Object ob:worldSet1Com)
+ {
+ 	bufw1.write((String)ob);
+  	bufw1.newLine();
+  }
+  bufw1.write("Word1.txt中的单词总数"+num1+"个");
+  bufw1.newLine();
+  bufw1.close();
+
+  BufferedWriter bufw2=new BufferedWriter(new FileWriter("Word2.txt"));
+  for(Object ob:wordSet1Dec)
+ {
+ 	bufw2.write((String)ob);
+  	bufw2.newLine();
+  }
+  bufw2.write("World2.txt中的单词总数"+num2+"个");
+  bufw2.newLine();
+  bufw2.close();
+ 
+
+ }
+
+   
+  
+  public static  HashSet<Object>getWorldSet(File file)throws IOException
+  {
+	BufferedReader buf=new BufferedReader(new FileReader(file));//流缓冲
+ 	
+ 	StringBuffer sbuf=new StringBuffer();//缓冲字符串
+ 	
+
+ 	String line=null;
+  	
+  
+ 	 while((line=buf.readLine())!=null)
+ 	{
+  		sbuf.append(line);//追加到缓冲字符串中
+  	}
+
+  	buf.close();//读取结束
+	
+ 	Pattern expression=Pattern.compile("[a-zA-Z]+");//定义正则表达式匹配单词
+
+  	String string1=sbuf.toString().toLowerCase();//转换成小写
+
+  	Matcher matcher=expression.matcher(string1);定义string1的匹配器
+
+  	HashSet<Object> worldSet=new HashSet<Object>();
+
+ 
+  	Object word=null;//文章中的单词
+
+
+  	while(matcher.find())
+
+ 	{                     //是否匹配单词
+ 	 	word=matcher.group();//得到一个单词-树映射的键
+         	worldSet.add(word);
+ 	 }
+	return  worldSet;
+
+  }
+
+  
+	
+
+
+
+
+
+
+  }
